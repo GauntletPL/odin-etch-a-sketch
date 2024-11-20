@@ -1,0 +1,12 @@
+function createGrid() {
+    const rootDiv = document.querySelector('#root');
+
+    for (let i = 0; i < 16; i++) {
+        for (let ii = 0; ii < 16; ii++) {
+            const gridDiv = document.createElement('div');
+            gridDiv.classList.add('grid-cell');
+            gridDiv.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+            rootDiv.appendChild(gridDiv);
+        }
+    }
+}
