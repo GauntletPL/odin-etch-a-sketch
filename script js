@@ -1,12 +1,38 @@
-function createGrid() {
+function createGrid(gridSideLength) {
     const rootDiv = document.querySelector('#root');
 
-    for (let i = 0; i < 16; i++) {
-        for (let ii = 0; ii < 16; ii++) {
+    const CONTAINER_SIZE = 800;
+    const cellSize = CONTAINER_SIZE / gridSideLength;
+
+    for (let i = 0; i < gridSideLength; i++) {
+        for (let ii = 0; ii < gridSideLength; ii++) {
             const gridDiv = document.createElement('div');
             gridDiv.classList.add('grid-cell');
-            gridDiv.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+            //gridDiv.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+            gridDiv.style.width = gridDiv.style.height = `${cellSize}px`;
+            gridDiv.addEventListener('mouseenter', () => gridDiv.classList.add('visited'));
             rootDiv.appendChild(gridDiv);
         }
     }
+}
+
+function removeGrid() {
+    const rootDiv = document.querySelector('#root');
+    while (rootDiv.firstChild) {
+        rootDiv.firstChild.remove();
+    }
+}
+
+function handleNewGridButtonClick(e) {
+    const gridSize = prompt('Please specify the size of new grid. [1 - 100]');
+    if (!Number.isInteger(+gridSize)) {
+        alert('Grid size has to be an integer number.');
+        return;
+    }
+    if (gridSize < 1 || gridSize > 100) {
+        alert('Grid size has to be a number between 1 and 100.');
+        return;
+    }
+    removeGrid();
+    createGrid(gridSize);
 }

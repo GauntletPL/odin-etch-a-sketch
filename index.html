@@ -7,9 +7,13 @@
         <script src="./script js"></script>
     </head>
     <body>
+        <button class="eas-button">New grid</button>
         <div id="root"></div>
     </body>
     <script>
-        createGrid();
+        const newGridButton = document.querySelector('.eas-button');
+        newGridButton.addEventListener('click', handleNewGridButtonClick);
+
+        createGrid(16);
     </script>
 </html>
