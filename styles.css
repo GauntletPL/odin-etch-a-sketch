@@ -63,3 +63,8 @@
   background: rgba(0, 0, 0, .08);
   color: rgba(0, 0, 0, .3);
 }
+
+.sketch-type {
+    width: 200px;
+    display: inline-block;
+}

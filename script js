@@ -4,13 +4,31 @@ function createGrid(gridSideLength) {
     const CONTAINER_SIZE = 800;
     const cellSize = CONTAINER_SIZE / gridSideLength;
 
+    function handleGridCellMouseEnter(e) {
+        const gridCell = e.target;
+        switch (sketchType) {
+            case 'regular':
+                gridCell.style.backgroundColor = 'darkslategray';
+                break;
+            case 'color':
+                gridCell.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+                break;
+            case 'stacking':
+                gridCell.style.backgroundColor = 'darkslategray';
+                let opacity = +gridCell.style.opacity;
+                if (opacity < 1) opacity += 0.1;
+                gridCell.style.opacity = opacity;
+                break;
+        }
+    }
+
     for (let i = 0; i < gridSideLength; i++) {
         for (let ii = 0; ii < gridSideLength; ii++) {
             const gridDiv = document.createElement('div');
             gridDiv.classList.add('grid-cell');
             //gridDiv.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
             gridDiv.style.width = gridDiv.style.height = `${cellSize}px`;
-            gridDiv.addEventListener('mouseenter', () => gridDiv.classList.add('visited'));
+            gridDiv.addEventListener('mouseenter', handleGridCellMouseEnter);
             rootDiv.appendChild(gridDiv);
         }
     }
@@ -35,4 +53,9 @@ function handleNewGridButtonClick(e) {
     }
     removeGrid();
     createGrid(gridSize);
+}
+
+let sketchType = 'regular';
+function handleSketchTypeRadioClick(e) {
+    sketchType = e.target.value;
 }

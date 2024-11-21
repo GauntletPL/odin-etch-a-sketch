@@ -7,12 +7,37 @@
         <script src="./script js"></script>
     </head>
     <body>
+        <fieldset class="sketch-type">
+            <legend>Select sketching mode:</legend>
+            <div>
+                <input type="radio" id="sketch-type-regular" name="sketch-type" value="regular" checked>
+                <label for="sketch-type-regular">Regular</label>
+            </div>
+            <div>
+                <input type="radio" id="sketch-type-color" name="sketch-type" value="color">
+                <label for="sketch-type-color">Random colour</label>
+            </div>
+            <div>
+                <input type="radio" id="sketch-type-stacking" name="sketch-type" value="stacking">
+                <label for="sketch-type-stacking">Stacking</label>
+            </div>
+        </fieldset>
         <button class="eas-button">New grid</button>
+
         <div id="root"></div>
     </body>
     <script>
         const newGridButton = document.querySelector('.eas-button');
         newGridButton.addEventListener('click', handleNewGridButtonClick);
+
+        const sketchTypeRegularRadio = document.querySelector('#sketch-type-regular');
+        sketchTypeRegularRadio.addEventListener('click', handleSketchTypeRadioClick);        
+
+        const sketchTypeColorRadio = document.querySelector('#sketch-type-color');
+        sketchTypeColorRadio.addEventListener('click', handleSketchTypeRadioClick);
+
+        const sketchTypeStackingRadio = document.querySelector('#sketch-type-stacking');
+        sketchTypeStackingRadio.addEventListener('click', handleSketchTypeRadioClick);
 
         createGrid(16);
     </script>
