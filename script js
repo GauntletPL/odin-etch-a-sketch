@@ -9,6 +9,7 @@ function createGrid(gridSideLength) {
         switch (sketchType) {
             case 'regular':
                 gridCell.style.backgroundColor = 'darkslategray';
+                gridCell.style.opacity = '';
                 break;
             case 'color':
                 gridCell.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
